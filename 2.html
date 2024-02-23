@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #42413C;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing block. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the blocks, instead of the block elements themselves, gets rid of any box model math. A nested block with side padding can also be used as an alternate method. */
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+/* ~~ This fixed width container surrounds all other blocks ~~ */
+.container {
+	width: 960px;
+	background-color: #FFFFFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+/* ~~ The header is not given a width. It will extend the full width of your layout. ~~ */
+header {
+	background-color: #ADB96E;
+}
+/* ~~ These are the columns for the layout. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the block elements. The elements within these blocks have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the block itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the block element and place a second block element within it with no width and the padding necessary for your design.
+
+2) No margin has been given to the columns since they are all floated. If you must add margin, avoid placing it on the side you're floating toward (for example: a right margin on a block set to float right). Many times, padding can be used instead. For blocks where this rule must be broken, you should add a "display:inline" declaration to the block element's rule to tame a bug where some versions of Internet Explorer double the margin.
+
+3) Since classes can be used multiple times in a document (and an element can also have multiple classes applied), the columns have been assigned class names instead of IDs. For example, two sidebar blocks could be stacked if necessary. These can very easily be changed to IDs if that's your preference, as long as you'll only be using them once per document.
+
+4) If you prefer your nav on the left instead of the right, simply float these columns the opposite direction (all left instead of all right) and they'll render in reverse order. There's no need to move the blocks around in the HTML source.
+
+*/
+.sidebar1 {
+	float: left;
+	width: 180px;
+	background-color: #EADCAE;
+	padding-bottom: 10px;
+}
+.content {
+	padding: 10px 0;
+	width: 600px;
+	float: left;
+}
+aside {
+	float: left;
+	width: 180px;
+	background-color: #EADCAE;
+	padding: 10px 0;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol {
+	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+ul.nav {
+	list-style: none; /* this removes the list marker */
+	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /* this creates the button separation */
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	width: 160px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	text-decoration: none;
+	background-color: #C6D580;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background-color: #ADB96E;
+	color: #FFF;
+}
+
+/* ~~ The footer ~~ */
+footer {
+	padding: 10px 0;
+	background-color: #CCC49F;
+	position: relative;/* this gives IE6 hasLayout to properly clear */
+	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
+}
+/* ~~ Miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
+header, section, footer, aside, article, figure {
+	display: block;
+}
+-->
+</style><!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--></head>
+
+<body>
+
+<div class="container">
+  <header><a href="#"><img src="../1200px-Liverpool_FC_Logo.svg (1).png" width="200" height="264"></a></header>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="2.html">ประวัติ</a></li>
+      <li><a href="team.html">ทีมปัจจุบัน</a></li>
+      <ul>
+        <ul>
+          <ul>
+            <ul>
+              <ul>
+                <li><a href="index.html"> หน้าหลัก</a></li>
+              </ul>
+            </ul>
+          </ul>
+        </ul>
+      </ul>
+      <li></li>
+    </ul>
+    <aside>
+      <p>&nbsp;</p>
+</aside>
+  <!-- end .sidebar1 --></div>
+  <article class="content">
+    <h1>L	IVER POOL</h1>
+    <section>
+     <h2>ประวัติทีม</h2>
+      <p>สโมสรฟุตบอลลิเวอร์พูล ก่อตั้งหลังเกิดข้อพิพาทระหว่างคณะกรรมการของ<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%9F%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%B1%E0%B8%99" title="สโมสรฟุตบอลเอฟเวอร์ตัน">เอฟเวอร์ตัน</a>กับ<a href="https://th.wikipedia.org/wiki/%E0%B8%88%E0%B8%AD%E0%B8%AB%E0%B9%8C%E0%B8%99_%E0%B9%82%E0%B8%AE%E0%B8%A5%E0%B8%94%E0%B8%B4%E0%B8%87" title="จอห์น โฮลดิง">จอห์น โฮลดิง</a> ประธานสโมสรและเจ้าของที่ดิน<a href="https://th.wikipedia.org/wiki/%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%9F%E0%B8%B5%E0%B8%A5%E0%B8%94%E0%B9%8C" title="แอนฟีลด์">แอนฟีลด์</a> เอฟเวอร์ตันย้ายไป<a href="https://th.wikipedia.org/wiki/%E0%B8%81%E0%B8%B9%E0%B8%94%E0%B8%B4%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%81" title="กูดิสันพาร์ก">กูดิสันพาร์ก</a>ใน ค.ศ. 1892 หลังใช้งานแอนฟีลด์เป็นระยะเวลาแปดปีและโฮลดิงก่อตั้งสโมสรฟตบุอลลิเวอร์พูล</p>
+      <p>เพื่อเล่นในแอนฟีลด์<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-formed-3">[3]</a> แต่เดิมใช้ชื่อว่า "สโมสรฟุตบอลเอฟเวอร์ตันและแอตแลติกกราวด์สจำกัด" (<a href="https://th.wikipedia.org/wiki/%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9" title="ภาษาอังกฤษ">อังกฤษ</a>: <span lang="en">Everton F.C. and Athletic Grounds Ltd</span>) (หรือเรียกสั้น ๆ ว่า เอฟเวอร์ตันแอตแลติก) สโมสรกลายเป็นสโมสรฟุตบอลลิเวอร์พูลในเดือนมีนาคม ค.ศ. 1892 และได้รับการยอมรับอย่างเป็นทางการในอีกสามเดือนต่อมา หลัง<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B8%A1%E0%B8%B2%E0%B8%84%E0%B8%A1%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5_(%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9)" title="สมาคมฟุตบอล (ประเทศอังกฤษ)">สมาคมฟุตบอล</a>ปฏิเสธที่จะยอมรับสโมสรว่าเป็นเอฟเวอร์ตัน<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTEGraham198514-4">[4]</a></p>
+      <p>ลิเวอร์พูลลงแข่งขันครั้งแรกเมื่อวันที่ 1 กันยายน ค.ศ. 1892 เป็นการแข่งขันนัดกระชับมิตรก่อนเริ่มต้นฤดูกาล โดยพบกับ <a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A3%E0%B8%AD%E0%B9%80%E0%B8%97%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%94%E0%B8%B2%E0%B8%A1%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C_(1878)&action=edit&redlink=1" title="สโมสรฟุตบอลรอเทอร์ดามทาวน์ (1878) (ไม่มีหน้านี้)">รอเทอร์ดามทาวน์</a> ลิเวอร์พูลชนะด้วยผลประตูรวม 7–1 โดยผู้เล่นลิเวอร์พูลที่ลงสนามในนัดดังกล่าวนั้นเป็นชาวสก็อตแลนด์ทั้งหมด โดยผู้เล่นที่มาจากสก็อตแลนด์เพื่อมาเล่นในอังกฤษในเวลานั้น มักจะเรียกว่า <a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%AA%E0%B8%81%E0%B9%87%E0%B8%AD%E0%B8%95%E0%B8%88%E0%B9%8C%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%80%E0%B8%9F%E0%B8%AA%E0%B9%80%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AA&action=edit&redlink=1" title="สก็อตจ์โปรเฟสเซอร์ส (ไม่มีหน้านี้)">สก็อตจ์โปรเฟสเซอร์ส</a> <a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B8%A1%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5" title="รายชื่อผู้จัดการทีมสโมสรฟุตบอลลิเวอร์พูล">ผู้จัดการทีม</a> <a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%88%E0%B8%AD%E0%B8%AB%E0%B9%8C%E0%B8%99_%E0%B9%81%E0%B8%A1%E0%B8%81%E0%B9%80%E0%B8%84%E0%B8%99%E0%B8%99%E0%B8%B2&action=edit&redlink=1" title="จอห์น แมกเคนนา (ไม่มีหน้านี้)">จอห์น แมกเคนนา</a> เดินทางไปสกอตแลนด์เพื่อมองหาผู้เล่น หลังคัดเลือกผู้เล่นแล้ว พวกเขากลายเป็นที่รู้จักในนาม "ทีมออฟแมกส์"<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTEKelly198815-5">[5]</a> ทีมชนะเลิศ<a href="https://th.wikipedia.org/w/index.php?title=%E0%B9%81%E0%B8%A5%E0%B8%87%E0%B8%84%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A5%E0%B8%B5%E0%B8%81_(%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5)&action=edit&redlink=1" title="แลงคาเชอร์ลีก (ฟุตบอล) (ไม่มีหน้านี้)">แลงคาเชอร์ลีก</a>ในฤดูกาลแรกที่ลงเล่น และเข้าร่วม<a href="https://th.wikipedia.org/wiki/%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B5%E0%B8%81%E0%B9%80%E0%B8%8B%E0%B8%84%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B1%E0%B8%99" title="ฟุตบอลลีกเซคันด์ดิวิชัน">ฟุตบอลลีกเซคันด์ดิวิชัน</a>ในฤดูกาล 1893–94 หลังชนะเลิศรายการดังกล่าว ทีมก็ได้เลื่อนชั้นสู่<a href="https://th.wikipedia.org/wiki/%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B5%E0%B8%81%E0%B9%80%E0%B8%9F%E0%B8%B4%E0%B8%AA%E0%B8%95%E0%B9%8C%E0%B8%94%E0%B8%B4%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B1%E0%B8%99" title="ฟุตบอลลีกเฟิสต์ดิวิชัน">เฟิสต์ดิวิชัน</a> แล้วก็ชนะเลิศใน ค.ศ. 1901 และ 1906<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTEGraham198516%E2%80%9318-6">[6]</a></p>
+    </section>
+    <section>
+      <h2><span id="สนามกีฬา">สนามกีฬา</span></h2>
+      <p>แอนฟีลด์ถูกสร้างขึ้นใน ค.ศ. 1884 บนที่ดินติดกับ<a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%AA%E0%B9%81%E0%B8%95%E0%B8%99%E0%B8%A5%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%81,_%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5&action=edit&redlink=1" title="สแตนลีย์พาร์ก, ลิเวอร์พูล (ไม่มีหน้านี้)">สแตนลีย์พาร์ก</a> ห่างจากตัวเมืองลิเวอร์พูล 2 ไมล์ (3 กิโลเมตร) แต่เดิมเคยเป็นสนามเหย้าของเอฟเวอร์ตัน ก่อนที่สโมสรจะย้ายไป<a href="https://th.wikipedia.org/wiki/%E0%B8%81%E0%B8%B9%E0%B8%94%E0%B8%B4%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%81" title="กูดิสันพาร์ก">กูดิสันพาร์ก</a> หลังมีข้อพิพาทเรื่องค่าเช่ากับ จอห์น โฮลดิง เจ้าของแอนฟีลด์<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTELiversedge1991112-66">[66]</a> ทำให้แอนฟีลด์ไม่มีผู้ใช้งาน โฮลดิงจึงก่อตั้งลิเวอร์พูลใน ค.ศ. 1892 และสโมสรได้ลงเล่นในแอนฟีลด์นับตั้งแต่นั้นเป็นต้นมา ความจุของสนามในเวลานั้นคือ 20,000 ที่นั่ง อย่างไรก็ตาม มีผู้ชมเพียง 100 คนในการแข่งขันครั้งแรกของสโมสรที่สนามแห่งนี้<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTEKelly1988187-67">[67]</a></p>
+      <p>อัฒจันทร์เดอะค็อป ถูกสร้างขึ้นใน ค.ศ. 1906 เนื่องจากเริ่มมีผู้ชมเข้ามาชมเกมการแข่งขันมากขึ้น ในตอนแรกนั้นเรียกว่าโอกฟิลด์โรดเอ็มแบงก์เมนต์ โดยเกมแรกหลังการสร้างอัฒจันทร์นี้ เกิดขึ้นเมื่อวันที่ 1 กันยายน ค.ศ. 1906 ในนัดที่เจ้าบ้านเอาชนะสโตกซิตีด้วยผลประตู 1–0<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTEMoynihan200924-68">[68]</a> ใน ค.ศ. 1906 อัฒจันทร์ฝั่งยืนที่อยู่ปลายด้านหนึ่งของสนามถูกเปลี่ยนชื่ออย่างเป็นทางการเป็น<a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%AA%E0%B8%9B%E0%B8%B4%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%84%E0%B9%87%E0%B8%AD%E0%B8%9B_(%E0%B8%AA%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B8%81%E0%B8%B5%E0%B8%AC%E0%B8%B2)&action=edit&redlink=1" title="สปิออนค็อป (สนามกีฬา) (ไม่มีหน้านี้)">สปิออนค็อป</a> ตั้งชื่อตามเนินเขาใน<a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%8B%E0%B8%B9%E0%B8%A5%E0%B8%B9-%E0%B8%99%E0%B8%B2%E0%B8%97%E0%B8%B2%E0%B8%A5&action=edit&redlink=1" title="ควาซูลู-นาทาล (ไม่มีหน้านี้)">ควาซูลู-นาทาล</a> <a href="https://th.wikipedia.org/wiki/%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B9%81%E0%B8%AD%E0%B8%9F%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B9%83%E0%B8%95%E0%B9%89" title="ประเทศแอฟริกาใต้">ประเทศแอฟริกาใต้</a><a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTELiversedge1991113-69">[69]</a> เนินเขาเป็นที่ตั้งของ<a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%A2%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%9B%E0%B8%B4%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%84%E0%B9%87%E0%B8%AD%E0%B8%9B&action=edit&redlink=1" title="ยุทธการที่สปิออนค็อป (ไม่มีหน้านี้)">ยุทธการที่สปิออนค็อป</a>ใน<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%9A%E0%B8%B9%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%AD%E0%B8%87" title="สงครามบูร์ครั้งที่สอง">สงครามบูร์ครั้งที่สอง</a> ซึ่งมีทหารมากกว่า 300 นายจากกองทหารแลงคาเชอร์เสียชีวิตที่นั่น โดยหลายคนมาจากลิเวอร์พูล<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTEKelly1988188-70">[70]</a> อัฒจันทร์นี้สามารถจุได้สูงสุดถึง 28,000 คน เคยเป็นหนึ่งในอัฒจันทร์ยืนชั้นเดียวที่ใหญ่ที่สุดในโลก หลายสนามในอังกฤษเริ่มมีการตั้งชื่ออัฒจันทร์ว่าสปิออนค็อป แต่อัฒจันทร์สปิออนค็อปของแอนฟีลด์นี้เป็นอัฒจันทร์ที่ใหญ่ที่สุดในตอนนั้น โดยสามารถจุผู้สนับสนุนได้มากกว่าสนามฟุตบอลบางแห่ง<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-Pearce-71">[71]</a></p>
+      <p>แอนฟีลด์สามารถรองรับผู้สนับสนุนสูงสุดได้มากกว่า 60,000 คนและมีความจุปกติที่ 55,000 คน จนกระทั่งในทศวรรษ 1990 หลัง <em>เทย์เลอร์รีพอร์ต</em> รายงานเหตุการณ์การถล่มของอัฒจันทร์ที่สนามฮิลส์โบโร พรีเมียร์ลีกจึงมีคำสั่งให้ทุกสนามเปลี่ยนจากอัฒจันทร์ยืนเป็นแบบนั่งทั้งหมดในฤดูกาล 1993–94 ความจุของแอนฟีลด์จึงลดลงเหลือ 45,276 ที่นั่ง<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-prem-72">[72]</a> ผลจากรายงานได้ผลักดันให้มีการปรับปรุงอัฒจันทร์เคมลินโรด ซึ่งปรับปรุงเสร็จใน ค.ศ. 1992 ตรงกับการครบรอบ 100 ปีของการก่อตั้งสโมสร จึงตั้งชื่อว่าอัฒจันทร์เซนเทเนรี และได้เปลี่ยนชื่อเป็นอัฒจันทร์เคนนีแดลกลีชใน ค.ศ. 2017 มีการสร้างอัฒจันทร์เพิ่มอีกหนึ่งชั้นในอัฒจันทร์ฝั่งแอนฟีลด์โรดในช่วงปลาย ค.ศ. 1998 ทำให้ความจุของสนามเพิ่มขึ้น แต่เกิดปัญหาขึ้นหลังจากการเปิดใช้งาน ทำให้ต้องมีการสร้างเสาและตอม่อค้ำจุนเสริมเข้าไปเพื่อสร้างความมั่นคง</p>
+      <p>ให้กับชั้นบนสุดของอัฒจันทร์ หลังจากมีการรายงานการสั้นของชั้นอัฒจันทร์ช่วงเริ่มต้นของฤดูกาล 1999–2000<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-73">[73]</a></p>
+    </section>
+    <section></section>
+  <!-- end .content --></article>
+  <aside>
+    <h4>&nbsp;</h4>
+</aside>
+  <footer>
+    <p><a href="maker.html">ผู้จัดทำ </a></p>
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>

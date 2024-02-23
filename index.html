@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #42413C;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing block. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the blocks, instead of the block elements themselves, gets rid of any box model math. A nested block with side padding can also be used as an alternate method. */
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+/* ~~ This fixed width container surrounds all other blocks ~~ */
+.container {
+	width: 960px;
+	background-color: #FFFFFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+/* ~~ The header is not given a width. It will extend the full width of your layout. ~~ */
+header {
+	background-color: #ADB96E;
+}
+/* ~~ These are the columns for the layout. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the block elements. The elements within these blocks have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the block itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the block element and place a second block element within it with no width and the padding necessary for your design.
+
+2) No margin has been given to the columns since they are all floated. If you must add margin, avoid placing it on the side you're floating toward (for example: a right margin on a block set to float right). Many times, padding can be used instead. For blocks where this rule must be broken, you should add a "display:inline" declaration to the block element's rule to tame a bug where some versions of Internet Explorer double the margin.
+
+3) Since classes can be used multiple times in a document (and an element can also have multiple classes applied), the columns have been assigned class names instead of IDs. For example, two sidebar blocks could be stacked if necessary. These can very easily be changed to IDs if that's your preference, as long as you'll only be using them once per document.
+
+4) If you prefer your nav on the left instead of the right, simply float these columns the opposite direction (all left instead of all right) and they'll render in reverse order. There's no need to move the blocks around in the HTML source.
+
+*/
+.sidebar1 {
+	float: left;
+	width: 180px;
+	background-color: #EADCAE;
+	padding-bottom: 10px;
+}
+.content {
+	padding: 10px 0;
+	width: 600px;
+	float: left;
+}
+aside {
+	float: left;
+	width: 180px;
+	background-color: #EADCAE;
+	padding: 10px 0;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol {
+	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+ul.nav {
+	list-style: none; /* this removes the list marker */
+	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /* this creates the button separation */
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	width: 160px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	text-decoration: none;
+	background-color: #C6D580;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background-color: #ADB96E;
+	color: #FFF;
+}
+
+/* ~~ The footer ~~ */
+footer {
+	padding: 10px 0;
+	background-color: #CCC49F;
+	position: relative;/* this gives IE6 hasLayout to properly clear */
+	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
+}
+/* ~~ Miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
+header, section, footer, aside, article, figure {
+	display: block;
+}
+-->
+</style><!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--></head>
+
+<body>
+
+<div class="container">
+  <header><a href="#"><img src="../1200px-Liverpool_FC_Logo.svg (1).png" width="200" height="264"></a></header>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="2.html">ประวัติ</a></li>
+      <li><a href="team.html">ทีมปัจจุบัน</a></li>
+      
+      <li><a href="index.html"> หน้าหลัก</a></li>
+      <li></li>
+    </ul>
+    <aside>
+      <p>&nbsp;</p>
+</aside>
+  <!-- end .sidebar1 --></div>
+  <article class="content">
+    <h1>L	IVER POOL</h1>
+    <section>
+     <h2>รู้จักโสมรสรLiverpool</h2>
+      <p><strong>สโมสรฟุตบอลลิเวอร์พูล</strong> (<a href="https://th.wikipedia.org/wiki/%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9" title="ภาษาอังกฤษ">อังกฤษ</a>: <span lang="en">Liverpool Football Club</span>) เป็นสโมสร<a href="https://th.wikipedia.org/wiki/%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5" title="ฟุตบอล">ฟุตบอล</a>อาชีพที่อยู่ในเมือง<a href="https://th.wikipedia.org/wiki/%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5" title="ลิเวอร์พูล">ลิเวอร์พูล</a> <a href="https://th.wikipedia.org/wiki/%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%97%E0%B8%A8%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9" title="ประเทศอังกฤษ">ประเทศอังกฤษ</a> แข่งขันอยู่ใน<a href="https://th.wikipedia.org/wiki/%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B9%80%E0%B8%A1%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B9%8C%E0%B8%A5%E0%B8%B5%E0%B8%81" title="พรีเมียร์ลีก">พรีเมียร์ลีก</a> ลีกสูงสุดของ<a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%A5%E0%B8%B5%E0%B8%81%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9" title="ระบบลีกฟุตบอลอังกฤษ">ฟุตบอลอังกฤษ</a> สโมสรก่อตั้งใน ค.ศ. 1892 ได้เข้าร่วมแข่งขัน<a href="https://th.wikipedia.org/wiki/%E0%B8%AD%E0%B8%B4%E0%B8%87%E0%B8%81%E0%B8%A5%E0%B8%B4%E0%B8%8A%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B5%E0%B8%81" title="อิงกลิชฟุตบอลลีก">ฟุตบอลลีก</a>ในปีต่อมาและใช้สนาม<a href="https://th.wikipedia.org/wiki/%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%9F%E0%B8%B5%E0%B8%A5%E0%B8%94%E0%B9%8C" title="แอนฟีลด์">แอนฟีลด์</a>เป็นสนามเหย้าตั้งแต่ก่อตั้งสโมสร</p>
+      <p>สำหรับการแข่งขันภายในประเทศ ลิเวอร์พูลชนะเลิศ<a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%8A%E0%B8%99%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%82%E0%B9%88%E0%B8%87%E0%B8%82%E0%B8%B1%E0%B8%99%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9#%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%8A%E0%B8%99%E0%B8%B0%E0%B9%82%E0%B8%94%E0%B8%A2%E0%B8%A3%E0%B8%A7%E0%B8%A1" title="รายชื่อผู้ชนะการแข่งขันฟุตบอลอังกฤษ">ลีกสูงสุด</a> 19 สมัย, <a href="https://th.wikipedia.org/wiki/%E0%B9%80%E0%B8%AD%E0%B8%9F%E0%B9%80%E0%B8%AD%E0%B8%84%E0%B8%B1%E0%B8%9E" title="เอฟเอคัพ">เอฟเอคัพ</a> 8 สมัย, <a href="https://th.wikipedia.org/wiki/%E0%B8%AD%E0%B8%B5%E0%B9%80%E0%B8%AD%E0%B8%9F%E0%B9%81%E0%B8%AD%E0%B8%A5%E0%B8%84%E0%B8%B1%E0%B8%9E" title="อีเอฟแอลคัพ">ลีกคัพ</a> 9 สมัย (สถิติสูงสุด) และ<a href="https://th.wikipedia.org/wiki/%E0%B9%80%E0%B8%AD%E0%B8%9F%E0%B9%80%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%A1%E0%B8%A1%E0%B8%B4%E0%B8%A7%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B5%E0%B8%8A%E0%B8%B5%E0%B8%A5%E0%B8%94%E0%B9%8C" title="เอฟเอคอมมิวนิตีชีลด์">เอฟเอคอมมิวนิตีชีลด์</a> 16 สมัย ส่วนการแข่งขันระดับนานาชาติ ลิเวอร์พูลชนะเลิศ<a href="https://th.wikipedia.org/wiki/%E0%B8%A2%E0%B8%B9%E0%B8%9F%E0%B9%88%E0%B8%B2%E0%B9%81%E0%B8%8A%E0%B8%A1%E0%B9%80%E0%B8%9B%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AA%E0%B9%8C%E0%B8%A5%E0%B8%B5%E0%B8%81" title="ยูฟ่าแชมเปียนส์ลีก">ยูฟ่าแชมเปียนส์ลีก</a> 6 สมัย, <a href="https://th.wikipedia.org/wiki/%E0%B8%A2%E0%B8%B9%E0%B8%9F%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%B9%E0%B9%82%E0%B8%A3%E0%B8%9B%E0%B8%B2%E0%B8%A5%E0%B8%B5%E0%B8%81" title="ยูฟ่ายูโรปาลีก">ยูฟ่าคัพ</a> 3 สมัย, <a href="https://th.wikipedia.org/wiki/%E0%B8%A2%E0%B8%B9%E0%B8%9F%E0%B9%88%E0%B8%B2%E0%B8%8B%E0%B8%B9%E0%B9%80%E0%B8%9B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%B1%E0%B8%9E" title="ยูฟ่าซูเปอร์คัพ">ยูฟ่าซูเปอร์คัพ</a> 4 สมัย (ทั้งสามรายการเป็นสถิติสูงสุดของสโมสรอังกฤษ) และ<a href="https://th.wikipedia.org/wiki/%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%8A%E0%B8%B4%E0%B8%87%E0%B9%81%E0%B8%8A%E0%B8%A1%E0%B8%9B%E0%B9%8C%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B9%82%E0%B8%A5%E0%B8%81" title="ฟุตบอลชิงแชมป์สโมสรโลก">ฟีฟ่าคลับเวิลด์คัพ</a> 1 สมัย ช่วงเวลาที่ประสบความสำเร็จมากที่สุดในประวัติศาสตร์คือช่วงคริสต์ทศวรรษ 1970 และคริสต์ทศวรรษ 1980 เมื่อ<a href="https://th.wikipedia.org/wiki/%E0%B8%9A%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%8C_%E0%B9%81%E0%B8%8A%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%B5" title="บิลล์ แชงคลี">บิลล์ แชงคลี</a>, <a href="https://th.wikipedia.org/wiki/%E0%B8%9A%E0%B9%8A%E0%B8%AD%E0%B8%9A_%E0%B9%80%E0%B8%9E%E0%B8%AA%E0%B8%A5%E0%B8%B5%E0%B8%A2%E0%B9%8C" title="บ๊อบ เพสลีย์">บ๊อบ เพสลีย์</a>, <a href="https://th.wikipedia.org/wiki/%E0%B9%82%E0%B8%88_%E0%B9%80%E0%B8%9F%E0%B9%81%E0%B8%81%E0%B8%99" title="โจ เฟแกน">โจ เฟแกน</a>และ<a href="https://th.wikipedia.org/wiki/%E0%B9%80%E0%B8%84%E0%B8%99%E0%B8%99%E0%B8%B5_%E0%B9%81%E0%B8%94%E0%B8%A5%E0%B8%81%E0%B8%A5%E0%B8%B5%E0%B8%8A" title="เคนนี แดลกลีช">เคนนี แดลกลีช</a> พาทีมชนะเลิศลีกสูงสุด 11 สมัยและยูโรเปียนคัพ 4 ใบ ต่อมาลิเวอร์พูลชนะเลิศการแข่งขันยูฟ่าแชมเปียนลีกอีก 2 สมัย ภายใต้การคุมทีมของ<a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B2%E0%B8%9F%E0%B8%B2%E0%B9%80%E0%B8%AD%E0%B8%A5_%E0%B9%80%E0%B8%9A%E0%B8%99%E0%B8%B4%E0%B9%80%E0%B8%95%E0%B8%8B" title="ราฟาเอล เบนิเตซ">ราฟาเอล เบนิเตซ</a>และ<a href="https://th.wikipedia.org/wiki/%E0%B9%80%E0%B8%A2%E0%B8%B7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99_%E0%B8%84%E0%B8%A5%E0%B9%87%E0%B8%AD%E0%B8%9E" title="เยือร์เกิน คล็อพ">เยือร์เกิน คล็อพ</a>ตามลำดับ ซึ่งคล็อพสามารถนำทีมชนะเลิศลีกสูงสุดใน <a href="https://th.wikipedia.org/wiki/%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B9%80%E0%B8%A1%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B9%8C%E0%B8%A5%E0%B8%B5%E0%B8%81_%E0%B8%A4%E0%B8%94%E0%B8%B9%E0%B8%81%E0%B8%B2%E0%B8%A5_2019%E2%80%9320" title="พรีเมียร์ลีก ฤดูกาล 2019–20">ค.ศ. 2020</a> นับเป็นการชนะเลิศลีกสูงสุดสมัยที่ 19 และสมัยแรกของยุคพรีเมียร์ลีก</p>
+    </section>
+    <section>
+      <h2><span id="สีชุดแข่งและตราสโมสร">สีชุดแข่งและตราสโมสร</span></h2>
+      <p>ในช่วงเวลาส่วนใหญ่ของประวัติศาสตร์ลิเวอร์พูล สีชุดทีมเหย้าของสโมสรเป็นสีแดงล้วน แต่ในช่วงที่สโมสรเพิ่งก่อตั้ง ชุดทีมเหย้าจะคล้ายกับเอฟเวอร์ตันในสมัยนั้น โดยเป็นเสื้อแบ่งสี่ส่วนสีฟ้าขาว ชุดดังกล่าวใช้ในการแข่งขันจนถึง ค.ศ. 1894 เมื่อสโมสรนำสีแดงซึ่งเป็นสีประจำเมืองมาใช้<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-formed-3">[3]</a> ตั้งแต่ ค.ศ. 1901 สโมสรใช้<a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%99%E0%B8%81%E0%B9%84%E0%B8%A5%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C&action=edit&redlink=1" title="นกไลเวอร์ (ไม่มีหน้านี้)">นกไลเวอร์</a>ซึ่งเป็นสัญลักษณ์ของเมืองลิเวอร์พูลเป็นตราสโมสร แต่ยังไม่ถูกนำมาอยู่ในชุดแข่งจนกระทั่งใน ค.ศ. 1955 ลิเวอร์พูลใส่ชุดแข่งขันเป็นเสื้อสีแดงและกางกางขาสั้นสีขาวจนถึง ค.ศ. 1964 เมื่อผู้จัดการทีม บิลล์ แชงคลี ตัดสินใจเปลี่ยนให้เป็นสีแดงล้วน<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-colours-54">[54]</a> ลิเวอร์พูลลงเล่นในชุดสีแดงล้วนครั้งแรกในนัดที่พบกับ<a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%81%E0%B8%B5%E0%B8%AC%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%A5%E0%B8%84%E0%B8%95%E0%B9%8C" title="ราชสโมสรกีฬาอันเดอร์เลคต์">อันเดอร์เลคต์</a> <a href="https://th.wikipedia.org/w/index.php?title=%E0%B9%80%E0%B8%AD%E0%B8%B5%E0%B8%A2%E0%B8%99_%E0%B9%80%E0%B8%8B%E0%B8%99%E0%B8%95%E0%B9%8C_%E0%B8%88%E0%B8%AD%E0%B8%AB%E0%B9%8C%E0%B8%99&action=edit&redlink=1" title="เอียน เซนต์ จอห์น (ไม่มีหน้านี้)">เอียน เซนต์ จอห์น</a> ระลึกถึงในอัตชีวประวัติของเขาว่า:</p>
+      <dl>
+        <dd>
+          <blockquote>
+            <p>เขา [แชงคลี] คิดว่าโทนสีจะส่งผลกระทบทางจิตวิทยา – สีแดงคือความอันตราย สีแดงคือพลัง วันหนึ่งเขาเข้ามาในห้องแต่งตัวและโยนกางเกงขาสั้นสีแดงคู่หนึ่งให้กับ<a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%A3%E0%B8%AD%E0%B8%99_%E0%B8%A2%E0%B8%B5%E0%B8%95%E0%B8%AA%E0%B9%8C&action=edit&redlink=1" title="รอน ยีตส์ (ไม่มีหน้านี้)">รอนนี ยีตส์</a> "ใส่กางเกงขาสั้นนั่นซะและมาดูว่าคุณเป็นยังไง" เขาพูด "ให้ตายเถอะ รอนนี คุณดูดีมาก ดูน่ากลัว คุณดูเหมือนสูง 7 ฟุต" "ทำไมไม่ทำให้มันสมบูรณ์แบบไปเลยล่ะ หัวหน้า?" ผมเสนอ "ทำไมไม่สวมถุงเท้าสีแดงล่ะ? ใส่สีแดงล้วนให้หมดไปเลย" แชงคลีอนุมัติและชุดที่เป็นที่จดจำก็ถือกำเนิดขึ้น<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-55">[55]</a></p>
+          </blockquote>
+        </dd>
+      </dl>
+      <p>สีชุดทีมเยือนของลิเวอร์พูลมักจะเป็นเสื้อสีเหลืองหรือสีขาวและกางเกงขาสั้นสีดำ ยกเว้นในบางครั้ง เช่น ใน ค.ศ. 1987 สโมสรใช้ชุดสีเทาล้วน และในฤดูกาล 1991–92 ซึ่งฉลองครบรอบหนึ่งร้อยปี สโมสรใช้เสื้อสีเขียวและกางเกงขาสั้นสีขาว ชุดทีมเยือนมีหลากหลายสีในทศวรรษ 1990 ประกอบด้วย สีทองกับสีกรมท่า, สีเหลืองสดใส, สีดำและสีเทาและสีน้ำตาลอ่อน สโมสรสลับสีชุดทีมเยือนระหว่างสีเหลืองกับสีขาว จนกระทั่งในฤดูกาล 2008–09 ได้กลับมาใช้ชุดสีเทาอีกครั้ง สีชุดที่สามถูกออกแบบสำหรับนัดเยือนในการแข่งขันรายการยุโรป แต่ก็สามารถใส่ชุดที่สามในนัดเยือนของการแข่งขันในประเทศได้ หากสีชุดทีมเยือนนั้นซ้ำกับสีชุดทีมเหย้า <a href="https://th.wikipedia.org/w/index.php?title=%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A3%E0%B8%B4%E0%B9%80%E0%B8%AD%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AA%E0%B8%9B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%AA%E0%B9%8C&action=edit&redlink=1" title="วอร์ริเออร์สปอร์ตส์ (ไม่มีหน้านี้)">วอร์ริเออร์สปอร์ตส์</a>เป็นผู้ออกแบบชุดแข่งขันระหว่าง ค.ศ. 2012–2015 โดยเริ่มครั้งแรกในฤดูกาล 2012–13<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-56">[56]</a> ในเดือนกุมภาพันธ์ ค.ศ. 2015 บริษัทแม่ของวอร์ริเออร์ <a href="https://th.wikipedia.org/wiki/%E0%B8%99%E0%B8%B4%E0%B8%A7%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%99%E0%B8%8B%E0%B9%8C" title="นิวบาลานซ์">นิวบาลานซ์</a> ประกาศเข้าสู่ตลาดฟุตบอลโลก ชุดแข่งของสโมสรจึงถูกเปลี่ยนผู้ผลิตชุดจากวอร์ริเออร์เป็นนิวบาลานซ์<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-57">[57]</a> เสื้อผ้ายี่ห้ออื่นที่เคยผลิตให้กับสโมสรได้แก่ <a href="https://th.wikipedia.org/wiki/%E0%B8%AD%E0%B8%B1%E0%B8%A1%E0%B9%82%E0%B8%9A%E0%B8%A3" title="อัมโบร">อัมโบร</a>ซึ่งเคยผลิตชุดแข่งให้จนถึง ค.ศ. 1985 จากนั้น<a href="https://th.wikipedia.org/wiki/%E0%B8%AD%E0%B8%B2%E0%B8%94%E0%B8%B4%E0%B8%94%E0%B8%B2%E0%B8%AA" title="อาดิดาส">อาดิดาส</a>ได้เข้าแทนที่ จนกระทั่ง ค.ศ. 1996 <a href="https://th.wikipedia.org/wiki/%E0%B8%A3%E0%B8%B5%E0%B8%9A%E0%B8%AD%E0%B8%84" title="รีบอค">รีบอค</a>ได้เข้ามาแทนที่อาดิดาส และผลิตชุดแข่งให้สโมสรเป็นเวลา 10 ปี ก่อนที่อาดิดาสจะกลับมาผลิตชุดแข่งให้อีกครั้งตั้งแต่ ค.ศ. 2006 ถึง 2012<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-FOOTNOTECrilly200728-58">[58]</a> <a href="https://th.wikipedia.org/wiki/%E0%B9%84%E0%B8%99%E0%B8%81%E0%B8%B5%E0%B9%89_(%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97)" title="ไนกี้ (บริษัท)">ไนกี้</a>กลายเป็นผู้ผลิตชุดแข่งอย่างเป็นทางการตั้งแต่ฤดูกาล 2020–21<a href="https://th.wikipedia.org/wiki/%E0%B8%AA%E0%B9%82%E0%B8%A1%E0%B8%AA%E0%B8%A3%E0%B8%9F%E0%B8%B8%E0%B8%95%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9E%E0%B8%B9%E0%B8%A5#cite_note-59">[59]</a></p>
+    </section>
+    <section></section>
+  <!-- end .content --></article>
+  <aside>
+    <h4>&nbsp;</h4>
+</aside>
+  <footer>
+    <p><a href="maker.html">ผู้จัดทำ </a></p>
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>
